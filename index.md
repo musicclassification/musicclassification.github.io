@@ -30,11 +30,11 @@ By doing this project, we hope to further strengthen our understanding of both s
 
 ### References
 https://ieeexplore.ieee.org/document/4457263 
-\\
+\n
 http://www.ifs.tuwien.ac.at/~andi/publications/pdf/lid_ismir05.pdf
-\\
+\n
 http://millionsongdataset.com/
-\\
+\n
 https://www.kaggle.com/andradaolteanu/gtzan-dataset-music-genre-classification
-\\
+\n
 https://ieeexplore.ieee.org/document/1199998
