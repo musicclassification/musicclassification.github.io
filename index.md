@@ -7,7 +7,7 @@ In this project, we aim to use supervised and unsupervised learning for music cl
 
 ### Introduction
 
-As avid music listeners, we so often find ourselves listening to the same genres and types of music on a consistent basis. Creating a tool that would allow music enthusiasts to discover, curate, share, and compare pieces of music would allow listeners to foray into a whole new musical experience -- one that would drastically improve the diversity of musical tracks they listen to. As such, we aim to create a music classification tool to allow for the grouping together of similar types of music based on audio features as well as the recognition of music genre from a given piece of music.
+As avid music listeners, we so often find ourselves listening to the same genres and types of music on a consistent basis. Creating a tool that would allow music enthusiasts to discover, curate, share, and compare pieces of music would allow listeners to foray into a whole new musical experience -- one that would drastically improve the diversity of musical tracks they listen to. As such, we aim to create a music classification tool to allow for the grouping together of similar types of music based on acoustic and non-acoustic features as well as the recognition of music genre from a given piece of music.
 
 ### Problem Definition
     
