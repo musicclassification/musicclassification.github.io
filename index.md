@@ -29,12 +29,13 @@ By doing this project, we hope to further strengthen our understanding of both s
 
 
 ### References
-https://ieeexplore.ieee.org/document/4457263   
+Changsheng Xu, N. C. Maddage, Xi Shao, Fang Cao and Qi Tian, "Musical genre classification using support vector machines," 2003 IEEE International Conference on Acoustics, Speech, and Signal Processing, 2003. Proceedings. (ICASSP '03)., Hong Kong, China, 2003, pp. V-429, doi: 10.1109/ICASSP.2003.1199998.  
 
-http://www.ifs.tuwien.ac.at/~andi/publications/pdf/lid_ismir05.pdf  
+D. Kim, K. Kim, K. Park, J. Lee and K. M. Lee, "A music recommendation system with a dynamic k-means clustering algorithm," Sixth International Conference on Machine Learning and Applications (ICMLA 2007), Cincinnati, OH, USA, 2007, pp. 399-403, doi: 10.1109/ICMLA.2007.97.  
 
-http://millionsongdataset.com/  
+Lidy, Thomas & Rauber, Andreas. (2005). Evaluation of Feature Extractors and Psycho-Acoustic Transformations for Music Genre Classification.. 34-41.   
 
-https://www.kaggle.com/andradaolteanu/gtzan-dataset-music-genre-classification  
+Olteanu, A. (2020, March 24). GTZAN dataset - music genre classification. Retrieved from https://www.kaggle.com/andradaolteanu/gtzan-dataset-music-genre-classification  
 
-https://ieeexplore.ieee.org/document/1199998  
+
+Thierry Bertin-Mahieux, Daniel P.W. Ellis, Brian Whitman, and Paul Lamere. The Million Song Dataset. In Proceedings of the 12th International Society for Music Information Retrieval Conference (ISMIR 2011), 2011.  
