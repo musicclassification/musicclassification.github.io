@@ -1,3 +1,5 @@
+### [Link to proposal video](https://drive.google.com/file/d/1kwqb7UsB2iS4vsniqZ7w89nSrMh75e7L/view?usp=sharing)
+
 ### Overview
 In this project, we aim to use supervised and unsupervised learning for music classification purposes.
 
