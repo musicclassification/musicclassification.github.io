@@ -14,7 +14,9 @@ Given a piece of music, we would like to use a supervised approach to accurately
 ### Data Collection
 
 We began by looking for datasets involving music. As stated in our project proposal, we found the datasets GTZAN and Million Songs as the perfect match. We started by downloading these datasets and we began by using the 30-second songs feature dataset. We wanted to see correlations between features and thus we used a heatmap to visually identify correlations between different features.
+
 ![Correlation Heatmap](/assets/correlation_matrix.png "Correlation Heatmap")
+
 As seen, certain features were highly correlated with others. Thus, this inspired us to transform our data from 58 features to 2 engineered features using PCA as this will simplify our dataset while withholding important information. 
 
 Here, we will explain some of the features within this dataset:
@@ -82,6 +84,7 @@ We know that the canonical number of genres in the GTZAN dataset is 10. Any resu
 However, the purity score tells a different story. For all the numbers we tested, the purity is low, which implies that this unsupervised clustering is not a good way to identify different genres. This suggests that tracks of a single genre do not necessarily share many features in common. To find a track which closely resembles an input track, it may be necessary to look in other genres. 
 
 For the transformed data GMM output, we received:
+
 ![Transformed Purity](/assets/transformed_purity.png "Transformed Purity Method")
 
 ![Transformed Silhouette](/assets/transformed_silhouette.png "Transformed Silhouette Method")
