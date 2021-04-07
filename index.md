@@ -9,7 +9,22 @@ As avid music listeners, we so often find ourselves listening to the same genres
 
 ### Problem Definition
     
-Given a piece of music, we would like to use a supervised approach to accurately classify the genre to which it belongs. For the unsupervised approach, we would like to group the music with other similar types of music based on both acoustic and non-acoustic features and provide recommendations for other songs which are similar to the sample in question. 
+Given a piece of music, we would like to use a supervised approach to accurately classify the genre to which it belongs. For the unsupervised approach, we aim to group the music with other similar types of music based on both acoustic and non-acoustic features and provide recommendations for other songs which are similar to the sample in question. 
+
+### Data Collection
+
+We began by looking for datasets involving music. As stated in our project proposal, we found the datasets GTZAN and Million Songs as the perfect match. We started by downloading these datasets and we began by using the 30-second songs feature dataset. We wanted to see correlations between features and thus we used a heatmap to visually identify correlations between different features.
+
+As seen, certain features were highly correlated with others. Thus, this inspired us to transform our data from 58 features to 2 engineered features using PCA as this will simplify our dataset while withholding important information. 
+
+Here, we will explain some of the features within this dataset:
+Zero Crossing Rate: the rate at which the the audio signal modulates between positive and negative 
+Mel-Frequency Cepstral Coefficients (MFCC): a set of features which essentially capture the human envelope of speech (in the dataset, we use 20 of these features)
+Spectral Centroid: the weighted average of frequencies samples at a specific point in time
+Spectral Rolloff: shape of the signal that represents a threshold below which most of the signal lies
+Tempo BPM: beats per minute in the audio piece
+Harmonics: overtones which are present in the sound sample (very hard to distinguish using the human ear)
+Perceptual: features that encodes the rhythm and beat of the piece
 
 ### Methods
 
@@ -18,12 +33,80 @@ We will use supervised learning to predict the genre of a piece of music, compar
 We can employ unsupervised learning to cluster the dataset based on acoustic and non-acoustic features. These clusters can be used to give suggestions for other songs that the user may enjoy. 
 These models will be trained and tested using the GTZAN and Million Song datasets, and we will use grid search in order to fine-tune our hyperparameters. Employing principal component analysis will allow us to reduce the dimensionality of our dataset. 
 
-### Potential Results
+Unsupervised
+
+The original dataset had 58 features and thus we decided to transform our dataset using PCA. We wanted to determine the optimal number of principal components, thus we used the explained variance ratio.
+
+We can see that running PCA on our dataset provides a greatly simplified feature set that is still able to capture the vast majority of variance present in the dataset. With just num_features=2, we are able to capture > 0.99 of the variance in the original dataset, prompting us to utilize this as our threshold value for our features post-PCA.
+
+Thus, we successfully transformed our original dataset of 58 features into a simplified feature set of just 2 engineered features. We wanted to use both the transformed and pre-transformed data when employing our approaches for exploratory reasons as we could compare the two feature sets.
+
+Now, we were ready to begin employing our unsupervised/supervised learning approaches. 
+
+We began by employing unsupervised learning where we used GMM and K-Means to cluster our data. 
+For K-Means, we used the elbow method to determine the optimal number of clusters : 
+For the pre-transformed data (with 58 features) we received this when utilizing the elbow method:
+
+As seen, the optimal number of clusters determined by the elbow method was 5. 
+
+For the transformed data post PCA, the output was as follows:
+
+
+As seen, the post PCA data which had 2 engineered features, was extremely similar to the first when utilizing the elbow method. The optimal number of clusters, as determined by the elbow method, was 5. 
+
+We then ran K-Means with 5 clusters and the output and analysis is listed in the results section. 
+
+Afterwards, we utilized our other clustering method: GMM. For GMM, we clustered the data using several different numbers of clusters and then used the silhouette coefficient to analyze the optimal number of clusters as well as the purity scores to evaluate the quality of clustering. The outputs are in the Results section. 
+
+For the supervised portion of this project, we will use supervised learning to predict the genre of a piece of music, comparing the performance of models such as Support Vector Machines, K-Nearest Neighbors, and Naive Bayes. We may use grid search to tune the hyperparameters for our supervised learning approaches.
+
+
+
+### Results
     
-Our desired outcome is to be able to input in a series of unknown pieces of music as audio files and have them grouped together based on similarity to form usable “recommendation groups.” For our supervised component, our desired outcome is to be able to output the corresponding genre based on a given piece of music. For our stretch goal, we define our desired outcome as having a user input a musical composition and the supervised model successfully outputs the corresponding genre, while the unsupervised model outputs a few related musical compositions. 
+Unsupervised
+
+For the unsupervised portion of this project, we utilized two clustering methods -- KMeans clustering and a Gaussian Mixture Model. 
+
+
+We know that the canonical number of genres in the GTZAN dataset is 10. Any result above this number is likely the cause of overfitting. The silhouette coefficient suggests that the optimal number of clusters is indeed 10, the number of genres.
+
+However, the purity score tells a different story. For all the numbers we tested, the purity is low, which implies that this unsupervised clustering is not a good way to identify different genres. This suggests that tracks of a single genre do not necessarily share many features in common. To find a track which closely resembles an input track, it may be necessary to look in other genres. 
+
+For the transformed data GMM output, we received:
+
+
+Again, the silhouette coefficient suggests that either 8 or 10 is the optimal number of clusters, but the purity score also seems to confirm, albeit with a low score, that 10 is indeed the optimal number of clusters. There was a noticeable deviation between the model’s performance on the PCA-transformed data and the original data. With both purity and silhouette coefficient scores, we hypothesize that this was due to the simplification of the data. Since so many features were removed, the boundaries between different classes were more malleable and may have blended closer together, increasing the ambiguity in the clustering and decreasing the scores of the models compared to the original features.
+
+For the KMeans clustering approach, we plotted the silhouette coefficient for both the non-transformed data and the transformed data to validate our result of 5 clusters as determined by the elbow method. 
+
+Pre-transformed, original data:
+
+Transformed Data, post PCA:
+
+
+Using the Silhouette method to validate the results of the analysis was slightly less favorable. Typically, Silhouette values closer to 1 indicate less ambiguity when making decisions using a clustering algorithm, since a higher value on the scale of [-1, 1] indicates less ambiguity in terms of classifying points and more decisiveness by the algorithm, while lower values are a sign of potential conflict for data points, as they more closely to the line to the decision boundaries in the clustering algorithm. As we increase the number of clusters, we can see that the scores slightly decrease, from a high of around 0.6 towards < 0.5 with a higher number of clusters. This can partially be attributed to the increasing granularity of clusters (i.e. as the number increases, more data points fall into conflict between being part of one cluster or another, since decision boundaries are tighter, therefore increasing the Silhouette value).
+
+
+Although the silhouette coefficient didn’t fully support our optimal number of clusters as determined by the elbow approach, we decided to go with 5 as the optimal number of clusters due to the elbow approach.
+We have also included a visual breakdown of what each of these clusters are composed of. 
+Original, pre-transformed data K-Means:
+
+
+
+As can be seen, a cluster number of 5 does group similar genres, such as classical & blues and pop, hip hop, & reggae together.
+
+Now, we will run K-Means on the transformed data, post PCA:
+                                                
+In the post-transformed feature set, KMeans seems to give some interesting results such as grouping classical and metal together. It does a good job grouping similar genres such as pop, hip hop, and reggae together. It also understandably groups classical and blues together, but also strangely groups country and disco together. It is possible that instead of grouping genres together it is actually grouping certain structures of songs together. 
+Soon, we will work to get results for our supervised learning approach. 
+    
+Our desired outcome is to be able to input in a series of unknown pieces of music as audio files and have them grouped together based on similarity to form usable “recommendation groups.” For our supervised component, our desired outcome is to be able to identify the genre of a given piece of music. For our stretch goal, we define our desired outcome as having a user input a musical composition and the supervised model successfully outputs the corresponding genre, while the unsupervised model outputs a few related musical compositions. 
 
 ### Discussion
+Thus far, we have collected the data, transformed the data using PCA, and completed our unsupervised learning approaches of GMM and K-Means and evaluated the results. We have also delved deeply into the features themselves to find similarities using heatmaps of correlations between the features. We have noticed some differences in KMeans and GMM and analyzed them such as the optimal number of clusters between the two. Next, we will be employing our supervised approaches and evaluating those results and perhaps running grid search to effectively tune the hyperparameters for our models.
 By doing this project, we hope to further strengthen our understanding of both supervised and unsupervised learning along with a deeper understanding of similarities and dissimilarities between musical pieces. In terms of difficulties with our project, two of the most difficult aspects will likely be audio feature extraction since we have to generate quantifiable features from relatively short audio clips and implementation of our supervised learning algorithms. Our goal with this project is to make it easier to categorize music and group music effectively, but our overall aim and future goal is to utilize this in a way so that users can get quality music recommendations based on the specific types of songs they like. From our analysis, most modern music recommendation tools are based on surface level comparisons like the artist rather than actually looking into the audio features of sounds, so our research will be useful for creating a more powerful recommendation system.
+
 
 
 
