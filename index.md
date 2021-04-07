@@ -36,7 +36,9 @@ These models will be trained and tested using the GTZAN and Million Song dataset
 Unsupervised
 
 The original dataset had 58 features and thus we decided to transform our dataset using PCA. We wanted to determine the optimal number of principal components, thus we used the explained variance ratio.
+
 ![Explained Variance](/assets/explained_variance.png "Explained Variance")
+
 We can see that running PCA on our dataset provides a greatly simplified feature set that is still able to capture the vast majority of variance present in the dataset. With just num_features=2, we are able to capture > 0.99 of the variance in the original dataset, prompting us to utilize this as our threshold value for our features post-PCA.
 
 Thus, we successfully transformed our original dataset of 58 features into a simplified feature set of just 2 engineered features. We wanted to use both the transformed and pre-transformed data when employing our approaches for exploratory reasons as we could compare the two feature sets.
@@ -46,10 +48,13 @@ Now, we were ready to begin employing our unsupervised/supervised learning appro
 We began by employing unsupervised learning where we used GMM and K-Means to cluster our data. 
 For K-Means, we used the elbow method to determine the optimal number of clusters : 
 For the pre-transformed data (with 58 features) we received this when utilizing the elbow method:
+
 ![Pre-Transformed Elbow](/assets/pre_transformed_elbow.png "Pre Transformed Elbow Method")
+
 As seen, the optimal number of clusters determined by the elbow method was 5. 
 
 For the transformed data post PCA, the output was as follows:
+
 ![Transformed Elbow](/assets/transformed_elbow.png "Transformed Elbow Method")
 
 As seen, the post PCA data which had 2 engineered features, was extremely similar to the first when utilizing the elbow method. The optimal number of clusters, as determined by the elbow method, was 5. 
@@ -69,6 +74,7 @@ Unsupervised
 For the unsupervised portion of this project, we utilized two clustering methods -- KMeans clustering and a Gaussian Mixture Model. 
 
 ![Pre-Transformed Purity](/assets/pre_transformed_purity.png "Pre Transformed Purity Method")
+
 ![Pre-Transformed Silhouette](/assets/pre_transformed_silhouette.png "Pre Transformed Silhouette Method")
 
 We know that the canonical number of genres in the GTZAN dataset is 10. Any result above this number is likely the cause of overfitting. The silhouette coefficient suggests that the optimal number of clusters is indeed 10, the number of genres.
@@ -77,6 +83,7 @@ However, the purity score tells a different story. For all the numbers we tested
 
 For the transformed data GMM output, we received:
 ![Transformed Purity](/assets/transformed_purity.png "Transformed Purity Method")
+
 ![Transformed Silhouette](/assets/transformed_silhouette.png "Transformed Silhouette Method")
 
 Again, the silhouette coefficient suggests that either 8 or 10 is the optimal number of clusters, but the purity score also seems to confirm, albeit with a low score, that 10 is indeed the optimal number of clusters. There was a noticeable deviation between the model’s performance on the PCA-transformed data and the original data. With both purity and silhouette coefficient scores, we hypothesize that this was due to the simplification of the data. Since so many features were removed, the boundaries between different classes were more malleable and may have blended closer together, increasing the ambiguity in the clustering and decreasing the scores of the models compared to the original features.
@@ -84,8 +91,11 @@ Again, the silhouette coefficient suggests that either 8 or 10 is the optimal nu
 For the KMeans clustering approach, we plotted the silhouette coefficient for both the non-transformed data and the transformed data to validate our result of 5 clusters as determined by the elbow method. 
 
 Pre-transformed, original data:
+
 ![Pre-Transformed Silhouette on KMeans](/assets/kmeans_pre_silhouette.png "Pre-Transformed Silhouette Method on Kmeans")
+
 Transformed Data, post PCA:
+
 ![Transformed Silhouette on KMeans](/assets/kmeans_transform_silhouette.png "Transformed Silhouette Method on KMeans")
 
 Using the Silhouette method to validate the results of the analysis was slightly less favorable. Typically, Silhouette values closer to 1 indicate less ambiguity when making decisions using a clustering algorithm, since a higher value on the scale of [-1, 1] indicates less ambiguity in terms of classifying points and more decisiveness by the algorithm, while lower values are a sign of potential conflict for data points, as they more closely to the line to the decision boundaries in the clustering algorithm. As we increase the number of clusters, we can see that the scores slightly decrease, from a high of around 0.6 towards < 0.5 with a higher number of clusters. This can partially be attributed to the increasing granularity of clusters (i.e. as the number increases, more data points fall into conflict between being part of one cluster or another, since decision boundaries are tighter, therefore increasing the Silhouette value).
@@ -94,20 +104,31 @@ Using the Silhouette method to validate the results of the analysis was slightly
 Although the silhouette coefficient didn’t fully support our optimal number of clusters as determined by the elbow approach, we decided to go with 5 as the optimal number of clusters due to the elbow approach.
 We have also included a visual breakdown of what each of these clusters are composed of. 
 Original, pre-transformed data K-Means:
+
 ![Cluster 1](/assets/pie1_kmeans_pre.png "Pre-Transformed Clustering Results")
+
 ![Cluster 2](/assets/pie2_kmeans_pre.png "Pre-Transformed Clustering Results")
+
 ![Cluster 3](/assets/pie3_kmeans_pre.png "Pre-Transformed Clustering Results")
+
 ![Cluster 4](/assets/pie4_kmeans_pre.png "Pre-Transformed Clustering Results")
+
 ![Cluster 5](/assets/pie5_kmeans_pre.png "Pre-Transformed Clustering Results")
 
 As can be seen, a cluster number of 5 does group similar genres, such as classical & blues and pop, hip hop, & reggae together.
 
 Now, we will run K-Means on the transformed data, post PCA:
+
 ![Cluster 1](/assets/pie1_kmeans_transform.png "Transformed Clustering Results")
+
 ![Cluster 2](/assets/pie2_kmeans_transform.png "Transformed Clustering Results")
+
 ![Cluster 3](/assets/pie3_kmeans_transform.png "Transformed Clustering Results")
+
 ![Cluster 4](/assets/pie4_kmeans_transform.png "Transformed Clustering Results")
+
 ![Cluster 5](/assets/pie5_kmeans_transform.png "Transformed Clustering Results")
+
 In the post-transformed feature set, KMeans seems to give some interesting results such as grouping classical and metal together. It does a good job grouping similar genres such as pop, hip hop, and reggae together. It also understandably groups classical and blues together, but also strangely groups country and disco together. It is possible that instead of grouping genres together it is actually grouping certain structures of songs together. 
 Soon, we will work to get results for our supervised learning approach. 
     
