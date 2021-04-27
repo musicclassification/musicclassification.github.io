@@ -1,6 +1,6 @@
 
 ## CS 7641 - Acoustify, Group 3 Spring 2021
-### [Link to final presentation video](https://drive.google.com/file/d/1AeNICQi7inylcUnTvvByjKX1h5b5l4v2/view?usp=sharing)
+### [Link to final presentation video](https://drive.google.com/file/d/1kT7zl_oTS7ZoAfK-3oD8EP1kHYJbasLB/view?usp=sharing)
 
 #### https://musicclassification.github.io/
 
