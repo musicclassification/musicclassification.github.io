@@ -204,7 +204,7 @@ We then tried using the post transformation features and the results were as fol
 We then tried using a set of 20 different transformed features and the results were as follows:
 ![RFC Transformed 20 Features](/assets/8.jpg "RFC Transformed 20 Features")
 
-Here, we can see that RF provides a significantly higher accuracy of close to 65-70% on our original, which is better than our Gaussian Naive Bayes Classifier.
+Here, we can see that RF provides a significantly higher accuracy of close to 70% on our original, which is better than our Gaussian Naive Bayes Classifier.
 
 We also figured out the best features from this Random Forest Classifier which was as follows:
 ```
@@ -255,10 +255,10 @@ categories = [
 ```
 We tried using our supervised learning approaches on new, custom genres. We tried fitting both Gaussisan Naive Bayes and Random Forest. We used a .80 train to .20 test ratio across all of our models to keep it consistent.
 
-For our GNB classifier using the new labels mentioned above our accuracy was .650. We did not see an improvement in terms of the accuracy achieved by a Gaussian Naive Bayes classifier by replacing the old labels with the new genres.
+For our GNB classifier using the new labels mentioned above our accuracy was .650. We saw a slight improvement in terms of the accuracy achieved by a Gaussian Naive Bayes classifier by replacing the old labels with the new genres.
 
-For Random Forest model with the new labels mentioned above our accuracy was .80. We did not witness an increase in the accuracy of the random forest classifier, either.
-We did not see an increase in accuracy for either supervised or unsupervised learning methods by switching to the new genres. Therefore, this assignment of genres does not make sense.
+For Random Forest model with the new labels mentioned above our accuracy was .80. We again saw a slight improvement in terms of the accuracy achieved by the Random Forest Classifier by replacing the old labels with the new genres. Therefore, this assignment of genres has been shown to be a reasonable grouping of genres.
+We saw improvements in both models thus the assignments of genres likely make sense.
   
 ####  Recommendations
 We recommend songs from our database based on cosine similarity (based on the features used in the random forest) to an input song. One of the results was as follows:
