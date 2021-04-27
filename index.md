@@ -265,11 +265,11 @@ We did not see an increase in accuracy for either supervised or unsupervised lea
 We recommend songs from our database based on cosine similarity (based on the features used in the random forest) to an input song. One of the results was as follows:
 ![Recommendation Song Most Similar to Input](/assets/9.jpg "Recommendation Song Most Similar to Input")
 As you can see, we inputted song 140, or classical.00040.wav, and it outputted jazz.00004.wav as the most similar song.
-
+As you can see this is pretty good as classical and jazz do have similarities.
 Recommend a song that is most different from the selected song.
 ![Recommendation Song Most Different to Input](/assets/10.jpg "Recommendation Song Most Different to Input")
 As you can see, we inputted song 290, or country.00090.wv, and it outputted pop.00027.wav as the most different song. Given the type of music in these two genres, it makes sense that these songs were predicted to be different.
-
+As you can see this is pretty good as country and pop are quite different musically.
 
 Our desired outcome is to be able to input in a series of unknown pieces of music as audio files and have them grouped together based on similarity to form usable “recommendation groups.” For our supervised component, our desired outcome is to be able to identify the genre of a given piece of music. For our stretch goal, we define our desired outcome as having a user input a musical composition and the supervised model successfully outputs the corresponding genre, while the unsupervised model outputs a few related musical compositions. 
 
