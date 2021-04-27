@@ -104,14 +104,14 @@ categories = [
  We then tried these custom genres which contained PCA features, since they captured most of the variance. Purity score for K-Means is discussed in the results section. We also used these custom genres with supervised learning approaches. 
 
 #### Supervised Learning
-For the supervised portion of this project, we will use supervised learning to predict the genre of a piece of music, comparing the performance of models such as Gaussian Naive Bayes, Random Forest Classifier, and Convolutional Neural Networks . We then tuned the hyperparameters. 
+For the supervised portion of this project, we will use supervised learning to predict the genre of a piece of music, comparing the performance of models such as Gaussian Naive Bayes, Random Forest Classifier, and  Neural Networks . We then tuned the hyperparameters. 
 
 Gaussian Naive Bayes:
 Our first of three supervised learning approaches was Gaussian Naive Bayes. Here we use GNB as a form of supervised learning to label "unknown" data based on the probabilities learned from the training data. For each proportion of testing size, we perform 5 shuffled iterations of GNB classification and then determine the accuracy by comparing our predicted y labels versus the actual labels. Then, we plot these results for both our regular dataset as well as our transformed dataset. One thing to note, is that our GNB will never be perfectly accurate as it assumes our features are completely independent, which is usually extremely unlikely for a real-world dataset. The results will be discussed in the results section.
 
 Random Forest Classifier: For the second of the three supervised learning approaches, we used a random forest classifier. We used Random Forest as a form of supervised learning to label "unknown" data based on the probabilities learned from the training data. For our random forest, we are using ensemble learning with bootstrap aggregation to avoid overfitting. For each proportion of testing size, we perform 5 shuffled iterations of Random Forest classification and then determine the accuracy by comparing our predicted y labels versus the actual labels. Then, we plot these results for both our regular dataset as well as our transformed dataset. The results will be discussed in the results section. 
 
-Convolutional Neural Networks: For the third and final approach of our supervised learning approaches, we used convolutional neural networks (CNN). We used it to label "unknown" data based on the probabilities learning from the training data. We used an epoch of 50 to increase accuracy but also balance computational costs. We used a standard batch size of 128 and we used RMSProp optimizer as it is widely-known gradient descent optimization algorithm for mini-batch learning of neural networks. The results will be discussed in the results section.
+ Neural Networks: For the third and final approach of our supervised learning approaches, we used  neural networks (NN). We used it to label "unknown" data based on the probabilities learning from the training data. We used an epoch of 50 to increase accuracy but also balance computational costs. We used a standard batch size of 128 and we used RMSProp optimizer as it is widely-known gradient descent optimization algorithm for mini-batch learning of neural networks. The results will be discussed in the results section.
 
 Now the custom genres were applied to the supervised learning approaches. The results are discussed in the results section for GNB and Random Forest Classifier. 
 
@@ -185,7 +185,7 @@ In the post-transformed feature set, KMeans seems to give some interesting resul
 We also ran the purity score for the custom genres as mentioned in the results section. Purity score for K-Means with 5 components: 0.521. This means that using the custom genres did not significantly improve purity. This suggests that the genres do not form strong clusters when visualized in feature space. We also used these custom genres with supervised learning approaches. 
 
 #### Supervised Learning Approaches
- We utilized three different supervised approaches: Gaussian Naive Bayes, Random Forest, Convolutional Neural Networks.
+ We utilized three different supervised approaches: Gaussian Naive Bayes, Random Forest,  Neural Networks.
 Our first of three supervised learning approaches was Gaussian Naive Bayes. The first test we did utilized untransformed features and the results were as follows.
 
 ![GNB Untransformed Features](/assets/4.jpg "GNB Untransformed Features")
@@ -216,7 +216,7 @@ Index(['chroma_stft_mean', 'chroma_stft_var', 'rms_mean', 'rms_var',
 
       
 
-Neural Networks: For the third and final approach of our supervised learning approaches, we used neural networks (NN). For our NN model, our parameters were as follows: 
+ Neural Networks: For the third and final approach of our supervised learning approaches, we used  neural networks (NN). For our NN model, our parameters were as follows: 
 ```
 def  keras_model(optimizer='rmsprop', init='glorot_uniform'):
 	model = k.models.Sequential([
@@ -272,21 +272,25 @@ As you can see this is pretty good as country and pop are quite different musica
 
 
 ### Discussion
-Through this project, we successfully collected the data, transformed the data using PCA, and completed our unsupervised learning approaches of GMM and K-Means and evaluated the results. We also took a look at supervised learning approaches of Gaussian Naive Bayes, Random Forest, and Neural Networks. We evaluated those results as well. We then delved into custom genres and their potential effects on our models. We noticed that our custom genres do not have a significant effect on our models.  We have also delved deeply into the features themselves to find similarities using heatmaps of correlations between the features. We have noticed some differences in KMeans and GMM and analyzed them such as the optimal number of clusters between the two. We then developed a recommendation system that allows a user to input a song and finds the most similar song using our models. Similarly, we developed a recommendation system that allows a user to input a song and find the song that is most distinct from the inputted song using our models. 
+Through this project, we successfully collected the data, transformed the data using PCA, and completed our unsupervised learning approaches of GMM and K-Means and evaluated the results. We also took a look at supervised learning approaches of Gaussian Naive Bayes, Random Forest, and  Neural Networks. We evaluated those results as well. We then delved into custom genres and their potential effects on our models. We noticed that our custom genres do not have a significant effect on our models.  We have also delved deeply into the features themselves to find similarities using heatmaps of correlations between the features. We have noticed some differences in KMeans and GMM and analyzed them such as the optimal number of clusters between the two. We then developed a recommendation system that allows a user to input a song and finds the most similar song using our models. Similarly, we developed a recommendation system that allows a user to input a song and find the song that is most distinct from the inputted song using our models. 
 By doing this project, we hope strengthened our understanding of both supervised and unsupervised learning along with a deeper understanding of similarities and dissimilarities between musical pieces. In terms of difficulties with our project, two of the most difficult aspects was hyperparameter tuning our NN and effectively using SKLearn libraries. Our goal with this project successfully made it easier to categorize music and group music effectively, but our overall aim and future goal was to utilize this in a way so that users can get quality music recommendations based on the specific types of songs they like. From our analysis, most modern music recommendation tools are based on surface level comparisons like the artist rather than actually looking into the audio features of sounds, so our research is useful for creating a more powerful recommendation system.
 
+### Conclusion
+Overall, through this project we were able to create effective systems for music grouping, music classification, and music recommendations, which is what we had initially intended to do. In both our unsupervised and supervised learning, we were able to get relatively good results that were verifyable and logically sound. From our results, we determined that KMeans is optimal with 6 clusters, which was about the number of genres in our dataset. We also determined that both KMeans and GMM are relatively accurate in their clustering though there is a tangible bias towards overfitted data. Then, we looked into supervised learning. We saw that Naive Bayes has a decent accuracy, though it has shortcomings because of being reliant on feature independence, which is difficult to ensure and unprobable. We also saw that RF with bagging is an extremely effective method of labelling our data with very high accuracy. Finally, we ran and tuned a NN on our data and determined that a NN is also an effective approach towards supervised learning of our data with one of the highest accuracies. After completing our supervised learning, we delved into the realm of pseudo-labels based on what we had learned in our earlier clustering. Using these pseudo-labels of metagenres were were able to record higher accuracy, highlighting the fact that metagenre utilization is beneficial to msuci classification effectiveness. Finally, we were able to apply our conclusions to a working product by extracting the most valuable features from our RF and using cosine similarity to give recommedations with high accuracy (measured by similarity and verified by inspection). Overall, we learned that for grouping music, KMeans and GMM are both effective, and for classifying music, Random Forest with bagging and pseudo-labelling is the most effective supervised approach. We also learned that for our particular data, pseudo-labelling was quite effective whereas PCA was not as effective.
 
 ### Contributions
 
-Pranay Agrawal: Worked on NN, Random Forest, Data Scraping, PCA, KMeans
+Pranay Agrawal: PCA, Elbow Method, KMeans, GMM, NN, Synthetic Genres, Recommendation
 
-Sidhesh Desai: Worked on Gaussian Naive Bayes, Research, Data Scraping, NN
+Sidhesh Desai: Elbow Method, SC, KMeans, GMM, GNB, RFC
 
-Pranal Madria: Worked on PCA, Recordings, NN, Topic Research, and Writeup
+Pranal Madria: Feature analysis/ visualization, PCA, GMM, NN, Documentation/Video
 
-Ayush Nene: Worked on Data Scraping, Random Forest, KMeans, GMM, Writeup, Colab.
+Ayush Nene: Purity Score, Elbow Method, KMeans, GMM, NN, Synthetic Genres, Recommendation
 
-Manoj Niverthi: Worked on Data Scraping, PCA, GMM, KMeans, and Recordings.
+Manoj Niverthi: Feature analysis/ visualization, PCA, GMM, NN, Documentation/Video
+
+Almost all of our methods were contributed to by all of the members, the above list primarily indicates what portions each member focused on.
 
 
 ### References
