@@ -1,3 +1,4 @@
+
 ### [Link to proposal video](https://drive.google.com/file/d/1kwqb7UsB2iS4vsniqZ7w89nSrMh75e7L/view?usp=sharing)
 
 ### Overview
@@ -5,7 +6,7 @@ In this project, we aim to use supervised and unsupervised learning for music cl
 
 ### Introduction
 
-As avid music listeners, we so often find ourselves listening to the same genres and types of music on a consistent basis. Creating a tool that would allow music enthusiasts to discover, curate, share, and compare pieces of music would allow listeners to foray into a whole new musical experience -- one that would drastically improve the diversity of musical tracks they listen to. As such, we aim to create a music classification tool to allow for the grouping together of similar types of music based on acoustic and non-acoustic features as well as the recognition of music genre from a given piece of music.
+As avid music listeners, we so often find ourselves listening to the same genres and types of music on a consistent basis. Creating a tool that would allow music enthusiasts to discover, curate, share, and compare pieces of music would allow listeners to foray into a whole new musical experience -- one that would drastically improve the diversity of musical tracks they listen to. As such, we aim to create a music classification tool to allow for the grouping together of similar types of music based on acoustic and non-acoustic features as well as the recognition of music genre from a given piece of music. Through this project, we were successfully able to do so.
 
 ### Problem Definition
     
@@ -41,6 +42,16 @@ The original dataset had 58 features and thus we decided to transform our datase
 
 ![Explained Variance](/assets/explained_variance.png "Explained Variance")
 
+##### PCA
+
+
+![PCA Viz](/assets/1.jpg "PCA Viz")
+![PCA Feature 1](/assets/2.jpg "PCA Feature 1")
+![PCA Feature 2](/assets/3.jpg "PCA Feature 2")
+
+
+As we can see, it appears that the first principal component consists of 3 of the original features, while the second principal component consists of 4 of the original features. We will partition the array to figure out which ones these are.
+
 We can see that running PCA on our dataset provides a greatly simplified feature set that is still able to capture the vast majority of variance present in the dataset. With just num_features=2, we are able to capture > 0.99 of the variance in the original dataset, prompting us to utilize this as our threshold value for our features post-PCA.
 
 Thus, we successfully transformed our original dataset of 58 features into a simplified feature set of just 2 engineered features. We wanted to use both the transformed and pre-transformed data when employing our approaches for exploratory reasons as we could compare the two feature sets.
@@ -65,7 +76,44 @@ We then ran K-Means with 5 clusters and the output and analysis is listed in the
 
 Afterwards, we utilized our other clustering method: GMM. For GMM, we clustered the data using several different numbers of clusters and then used the silhouette coefficient to analyze the optimal number of clusters as well as the purity scores to evaluate the quality of clustering. The outputs are in the Results section. 
 
-For the supervised portion of this project, we will use supervised learning to predict the genre of a piece of music, comparing the performance of models such as Support Vector Machines, K-Nearest Neighbors, and Naive Bayes. We may use grid search to tune the hyperparameters for our supervised learning approaches.
+#### Custom Genres
+
+Further for the unsupervised portion, we also added custom genres which were combinations of genres. We will attempt to apply prior knowledge in order to group genres by how similar we believe they are. Then we will apply our supervised learning to these supergenres to see if it will improve the accuracy.
+
+The supergenres we will use are as follows, based on our initial K-Means clustering:
+
+1.  classical, jazz
+2.  pop, hiphop
+3.  country, blues
+4.  metal
+5.  rock, disco
+6.  reggae
+
+We also tried K-means clustering with n = 5 as this should be the optimal number of clusters. The clusters were as follows:
+
+```
+categories = [
+['classical', 'jazz'],
+['hiphop', 'pop'],
+['country', 'blues'],
+['metal'],
+['rock', 'disco', 'reggae']
+]
+```
+
+ We then tried these custom genres which contained PCA features, since they captured most of the variance. Purity score for K-Means is discussed in the results section. We also used these custom genres with supervised learning approaches. 
+
+#### Supervised Learning
+For the supervised portion of this project, we will use supervised learning to predict the genre of a piece of music, comparing the performance of models such as Gaussian Naive Bayes, Random Forest Classifier, and Convolutional Neural Networks . We then tuned the hyperparameters. 
+
+Gaussian Naive Bayes:
+Our first of three supervised learning approaches was Gaussian Naive Bayes. Here we use GNB as a form of supervised learning to label "unknown" data based on the probabilities learned from the training data. For each proportion of testing size, we perform 5 shuffled iterations of GNB classification and then determine the accuracy by comparing our predicted y labels versus the actual labels. Then, we plot these results for both our regular dataset as well as our transformed dataset. One thing to note, is that our GNB will never be perfectly accurate as it assumes our features are completely independent, which is usually extremely unlikely for a real-world dataset. The results will be discussed in the results section.
+
+Random Forest Classifier: For the second of the three supervised learning approaches, we used a random forest classifier. We used Random Forest as a form of supervised learning to label "unknown" data based on the probabilities learned from the training data. For our random forest, we are using ensemble learning with bootstrap aggregation to avoid overfitting. For each proportion of testing size, we perform 5 shuffled iterations of Random Forest classification and then determine the accuracy by comparing our predicted y labels versus the actual labels. Then, we plot these results for both our regular dataset as well as our transformed dataset. The results will be discussed in the results section. 
+
+Convolutional Neural Networks: For the third and final approach of our supervised learning approaches, we used convolutional neural networks (CNN). We used it to label "unknown" data based on the probabilities learning from the training data. We used an epoch of 50 to increase accuracy but also balance computational costs. We used a standard batch size of 128 and we used RMSProp optimizer as it is widely-known gradient descent optimization algorithm for mini-batch learning of neural networks. The results will be discussed in the results section.
+
+Now the custom genres were applied to the supervised learning approaches. The results are discussed in the results section for GNB and Random Forest Classifier. 
 
 
 
@@ -133,8 +181,96 @@ Now, we will run K-Means on the transformed data, post PCA:
 ![Cluster 5](/assets/pie5_kmeans_transform.png "Transformed Clustering Results")
 
 In the post-transformed feature set, KMeans seems to give some interesting results such as grouping classical and metal together. It does a good job grouping similar genres such as pop, hip hop, and reggae together. It also understandably groups classical and blues together, but also strangely groups country and disco together. It is possible that instead of grouping genres together it is actually grouping certain structures of songs together. 
-Soon, we will work to get results for our supervised learning approach. 
-    
+
+We also ran the purity score for the custom genres as mentioned in the results section. Purity score for K-Means with 5 components: 0.521. This means that using the custom genres did not significantly improve purity. This suggests that the genres do not form strong clusters when visualized in feature space. We also used these custom genres with supervised learning approaches. 
+
+#### Supervised Learning Approaches
+ We utilized three different supervised approaches: Gaussian Naive Bayes, Random Forest, Convolutional Neural Networks.
+Gaussian Naive Bayes:
+Our first of three supervised learning approaches was Gaussian Naive Bayes. Here are the results. The first test we did utilized untransformed features and the results were as follows.
+
+![GNB Untransformed Features](/assets/4.jpg "GNB Untransformed Features")
+
+We then tried post transformed features and the results are as follows.
+![GNB Transformed Features](/assets/5.jpg "GNB Transformed Features")
+
+As we can see for the above graphs, on our untransformed dataset we get on average just over 40% accuracy. This is quite a decent amount as we are picking out of a large number of genres and music within genres can be quite different as seen by our earlier analysis.
+
+Random Forest Classifier: For the second of the three supervised learning approaches, we used a random forest classifier. Here are the results the first test we did utilized untransformed features and the results were as follows: 
+![RFC Untransformed Features](/assets/6.jpg "RFC Untransformed Features")
+
+We then tried using the post transformation features and the results were as follows:
+![RFC Transformed Features](/assets/7.jpg "RFC Transformed Features")
+
+We then tried using a set of 20 different transformed features and the results were as follows:
+![RFC Transformed 20 Features](/assets/8.jpg "RFC Transformed 20 Features")
+
+Here, we can see that RF provides a significantly higher accuracy of close to 80% on our original, which is better than our Gaussian Naive Bayes Classifier.
+
+We also figured out the best features from this Random Forest Classifier which was as follows:
+```
+Index(['chroma_stft_mean', 'chroma_stft_var', 'rms_mean', 'rms_var',
+       'spectral_centroid_var', 'spectral_bandwidth_mean', 'rolloff_mean',
+       'perceptr_var', 'mfcc4_mean', 'mfcc5_var'],
+      dtype='object')
+```
+
+      
+
+Convolutional Neural Networks: For the third and final approach of our supervised learning approaches, we used convolutional neural networks (CNN). For our CNN model, our parameters were as follows: 
+```
+def  keras_model(optimizer='rmsprop', init='glorot_uniform'):
+	model = k.models.Sequential([
+	k.layers.Dense(1024, activation='relu', kernel_initializer=init, input_shape=(features.shape[1],)),
+	k.layers.Dropout(0.4),
+	k.layers.BatchNormalization(),
+	k.layers.Dense(512, activation='relu', kernel_initializer=init),
+	k.layers.Dropout(0.4),
+	k.layers.BatchNormalization(),
+	k.layers.Dense(256, activation='relu', kernel_initializer=init),
+	k.layers.Dropout(0.4),
+	k.layers.BatchNormalization(),
+	k.layers.Dense(128, kernel_initializer=init, activation='relu'),
+	k.layers.Dropout(0.4),
+	k.layers.BatchNormalization(),
+	k.layers.Dense(64, kernel_initializer=init, activation='relu'),
+	k.layers.Dropout(0.4),
+	k.layers.BatchNormalization(),
+	k.layers.Dense(10, activation='softmax'),
+	])
+	model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
+return model
+```
+We used a stratified shuffle split and averaged the accuracies and received and average accuracy of .739. This is pretty good for a difficult multiclassification problem. 
+
+#### Custom Genres
+Below are the results for using custom genres on some of our supervised learning approaches.
+```
+categories = [
+['classical', 'jazz'],
+['hiphop', 'pop'],
+['country', 'blues'],
+['metal'],
+['rock', 'disco', 'reggae']
+]
+```
+We tried using our supervised learning approaches on new, custom genres. We tried fitting both Gaussisan Naive Bayes and Random Forest. We used a .75 train to .25 test ratio.
+
+For our GNB classifier using the new labels mentioned above our accuracy was .680. We did not see an improvement in terms of the accuracy achieved by a Gaussian Naive Bayes classifier by replacing the old labels with the new genres.
+
+For Random Forest model with the new labels mentioned above our accuracy was .8280. We did not witness an increase in the accuracy of the random forest classifier, either.
+We did not see an increase in accuracy for either supervised or unsupervised learning methods by switching to the new genres. Therefore, this assignment of genres does not make sense.
+  
+####  Recommendations
+We recommend songs from our database based on cosine similarity (based on the features used in the random forest) to an input song. One of the results was as follows:
+![Recommendation Song Most Similar to Input](/assets/9.jpg "Recommendation Song Most Similar to Input")
+As you can see, we inputted song 140, or classical.00040.wav, and it outputted jazz.00004.wav as the most similar song.
+
+Recommend a song that is most different from the selected song.
+![Recommendation Song Most Different to Input](/assets/10.jpg "Recommendation Song Most Different to Input")
+As you can see, we inputted song 290, or country.00090.wv, and it outputted pop.00027.wav as the most different song. Given the type of music in these two genres, it makes sense that these songs were predicted to be different.
+
+
 Our desired outcome is to be able to input in a series of unknown pieces of music as audio files and have them grouped together based on similarity to form usable “recommendation groups.” For our supervised component, our desired outcome is to be able to identify the genre of a given piece of music. For our stretch goal, we define our desired outcome as having a user input a musical composition and the supervised model successfully outputs the corresponding genre, while the unsupervised model outputs a few related musical compositions. 
 
 ### Discussion
