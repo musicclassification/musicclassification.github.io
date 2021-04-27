@@ -186,8 +186,7 @@ We also ran the purity score for the custom genres as mentioned in the results s
 
 #### Supervised Learning Approaches
  We utilized three different supervised approaches: Gaussian Naive Bayes, Random Forest, Convolutional Neural Networks.
-Gaussian Naive Bayes:
-Our first of three supervised learning approaches was Gaussian Naive Bayes. Here are the results. The first test we did utilized untransformed features and the results were as follows.
+Our first of three supervised learning approaches was Gaussian Naive Bayes. The first test we did utilized untransformed features and the results were as follows.
 
 ![GNB Untransformed Features](/assets/4.jpg "GNB Untransformed Features")
 
@@ -196,7 +195,7 @@ We then tried post transformed features and the results are as follows.
 
 As we can see for the above graphs, on our untransformed dataset we get on average just over 40% accuracy. This is quite a decent amount as we are picking out of a large number of genres and music within genres can be quite different as seen by our earlier analysis.
 
-Random Forest Classifier: For the second of the three supervised learning approaches, we used a random forest classifier. Here are the results the first test we did utilized untransformed features and the results were as follows: 
+Random Forest Classifier: For the second of the three supervised learning approaches, we used a random forest classifier. The first test we did utilized untransformed features and the results were as follows: 
 ![RFC Untransformed Features](/assets/6.jpg "RFC Untransformed Features")
 
 We then tried using the post transformation features and the results were as follows:
