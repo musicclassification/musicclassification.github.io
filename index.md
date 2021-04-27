@@ -193,7 +193,7 @@ Our first of three supervised learning approaches was Gaussian Naive Bayes. The 
 We then tried post transformed features and the results are as follows.
 ![GNB Transformed Features](/assets/5.jpg "GNB Transformed Features")
 
-As we can see for the above graphs, on our untransformed dataset we get on average just over 40% accuracy. This is quite a decent amount as we are picking out of a large number of genres and music within genres can be quite different as seen by our earlier analysis.
+As we can see for the above graphs, on our untransformed dataset we get on average just over 50% accuracy. This is quite a decent amount as we are picking out of a large number of genres and music within genres can be quite different as seen by our earlier analysis.
 
 Random Forest Classifier: For the second of the three supervised learning approaches, we used a random forest classifier. The first test we did utilized untransformed features and the results were as follows: 
 ![RFC Untransformed Features](/assets/6.jpg "RFC Untransformed Features")
@@ -204,7 +204,7 @@ We then tried using the post transformation features and the results were as fol
 We then tried using a set of 20 different transformed features and the results were as follows:
 ![RFC Transformed 20 Features](/assets/8.jpg "RFC Transformed 20 Features")
 
-Here, we can see that RF provides a significantly higher accuracy of close to 80% on our original, which is better than our Gaussian Naive Bayes Classifier.
+Here, we can see that RF provides a significantly higher accuracy of close to 65-70% on our original, which is better than our Gaussian Naive Bayes Classifier.
 
 We also figured out the best features from this Random Forest Classifier which was as follows:
 ```
@@ -255,9 +255,9 @@ categories = [
 ```
 We tried using our supervised learning approaches on new, custom genres. We tried fitting both Gaussisan Naive Bayes and Random Forest. We used a .80 train to .20 test ratio across all of our models to keep it consistent.
 
-For our GNB classifier using the new labels mentioned above our accuracy was .680. We did not see an improvement in terms of the accuracy achieved by a Gaussian Naive Bayes classifier by replacing the old labels with the new genres.
+For our GNB classifier using the new labels mentioned above our accuracy was .650. We did not see an improvement in terms of the accuracy achieved by a Gaussian Naive Bayes classifier by replacing the old labels with the new genres.
 
-For Random Forest model with the new labels mentioned above our accuracy was .8280. We did not witness an increase in the accuracy of the random forest classifier, either.
+For Random Forest model with the new labels mentioned above our accuracy was .80. We did not witness an increase in the accuracy of the random forest classifier, either.
 We did not see an increase in accuracy for either supervised or unsupervised learning methods by switching to the new genres. Therefore, this assignment of genres does not make sense.
   
 ####  Recommendations
