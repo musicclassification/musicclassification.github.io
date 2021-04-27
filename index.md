@@ -276,6 +276,17 @@ Through this project, we successfully collected the data, transformed the data u
 By doing this project, we hope strengthened our understanding of both supervised and unsupervised learning along with a deeper understanding of similarities and dissimilarities between musical pieces. In terms of difficulties with our project, two of the most difficult aspects was audio feature extraction since we had to generate quantifiable features from relatively short audio clips and implementation of our supervised learning algorithms. Our goal with this project successfully made it easier to categorize music and group music effectively, but our overall aim and future goal was to utilize this in a way so that users can get quality music recommendations based on the specific types of songs they like. From our analysis, most modern music recommendation tools are based on surface level comparisons like the artist rather than actually looking into the audio features of sounds, so our research is useful for creating a more powerful recommendation system.
 
 
+### Contributions
+
+Pranay Agrawal: Worked on CNN, Random Forest, Data Scraping, PCA
+
+Sidhesh Desai: Worked on Gaussian Naive Bayes, Research, Data Scraping, CNN
+
+Pranal Madria: Worked on PCA, Recordings, CNN, and Writeup
+
+Ayush Nene: Worked on Data Scraping, Random Forest, KMeans, GMM, Writeup, Colab.
+
+Manoj Niverthi: Worked on Data Scraping, PCA, GMM, KMeans, and Recordings.
 
 
 ### References
