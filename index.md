@@ -216,7 +216,7 @@ Index(['chroma_stft_mean', 'chroma_stft_var', 'rms_mean', 'rms_var',
 
       
 
-Convolutional Neural Networks: For the third and final approach of our supervised learning approaches, we used convolutional neural networks (CNN). For our CNN model, our parameters were as follows: 
+Neural Networks: For the third and final approach of our supervised learning approaches, we used neural networks (NN). For our NN model, our parameters were as follows: 
 ```
 def  keras_model(optimizer='rmsprop', init='glorot_uniform'):
 	model = k.models.Sequential([
@@ -272,17 +272,17 @@ As you can see this is pretty good as country and pop are quite different musica
 
 
 ### Discussion
-Through this project, we successfully collected the data, transformed the data using PCA, and completed our unsupervised learning approaches of GMM and K-Means and evaluated the results. We also took a look at supervised learning approaches of Gaussian Naive Bayes, Random Forest, and Convolutional Neural Networks. We evaluated those results as well. We then delved into custom genres and their potential effects on our models. We noticed that our custom genres do not have a significant effect on our models.  We have also delved deeply into the features themselves to find similarities using heatmaps of correlations between the features. We have noticed some differences in KMeans and GMM and analyzed them such as the optimal number of clusters between the two. We then developed a recommendation system that allows a user to input a song and finds the most similar song using our models. Similarly, we developed a recommendation system that allows a user to input a song and find the song that is most distinct from the inputted song using our models. 
-By doing this project, we hope strengthened our understanding of both supervised and unsupervised learning along with a deeper understanding of similarities and dissimilarities between musical pieces. In terms of difficulties with our project, two of the most difficult aspects was hyperparameter tuning our CNN and effectively using SKLearn libraries. Our goal with this project successfully made it easier to categorize music and group music effectively, but our overall aim and future goal was to utilize this in a way so that users can get quality music recommendations based on the specific types of songs they like. From our analysis, most modern music recommendation tools are based on surface level comparisons like the artist rather than actually looking into the audio features of sounds, so our research is useful for creating a more powerful recommendation system.
+Through this project, we successfully collected the data, transformed the data using PCA, and completed our unsupervised learning approaches of GMM and K-Means and evaluated the results. We also took a look at supervised learning approaches of Gaussian Naive Bayes, Random Forest, and Neural Networks. We evaluated those results as well. We then delved into custom genres and their potential effects on our models. We noticed that our custom genres do not have a significant effect on our models.  We have also delved deeply into the features themselves to find similarities using heatmaps of correlations between the features. We have noticed some differences in KMeans and GMM and analyzed them such as the optimal number of clusters between the two. We then developed a recommendation system that allows a user to input a song and finds the most similar song using our models. Similarly, we developed a recommendation system that allows a user to input a song and find the song that is most distinct from the inputted song using our models. 
+By doing this project, we hope strengthened our understanding of both supervised and unsupervised learning along with a deeper understanding of similarities and dissimilarities between musical pieces. In terms of difficulties with our project, two of the most difficult aspects was hyperparameter tuning our NN and effectively using SKLearn libraries. Our goal with this project successfully made it easier to categorize music and group music effectively, but our overall aim and future goal was to utilize this in a way so that users can get quality music recommendations based on the specific types of songs they like. From our analysis, most modern music recommendation tools are based on surface level comparisons like the artist rather than actually looking into the audio features of sounds, so our research is useful for creating a more powerful recommendation system.
 
 
 ### Contributions
 
-Pranay Agrawal: Worked on CNN, Random Forest, Data Scraping, PCA, KMeans
+Pranay Agrawal: Worked on NN, Random Forest, Data Scraping, PCA, KMeans
 
-Sidhesh Desai: Worked on Gaussian Naive Bayes, Research, Data Scraping, CNN
+Sidhesh Desai: Worked on Gaussian Naive Bayes, Research, Data Scraping, NN
 
-Pranal Madria: Worked on PCA, Recordings, CNN, Topic Research, and Writeup
+Pranal Madria: Worked on PCA, Recordings, NN, Topic Research, and Writeup
 
 Ayush Nene: Worked on Data Scraping, Random Forest, KMeans, GMM, Writeup, Colab.
 
