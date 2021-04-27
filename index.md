@@ -281,7 +281,7 @@ Overall, through this project we were able to create effective systems for music
 
 Pranay Agrawal: PCA, Elbow Method, KMeans, GMM, NN, Synthetic Genres, Recommendation
 
-Sidhesh Desai: Elbow Method, SC, KMeans, GMM, GNB, RFC
+Sidhesh Desai: Elbow Method, SC, KMeans, GMM, GNB, RFC, NN
 
 Pranal Madria: Feature analysis/ visualization, PCA, GMM, NN, Documentation/Video
 
