@@ -278,11 +278,11 @@ By doing this project, we hope strengthened our understanding of both supervised
 
 ### Contributions
 
-Pranay Agrawal: Worked on CNN, Random Forest, Data Scraping, PCA
+Pranay Agrawal: Worked on CNN, Random Forest, Data Scraping, PCA, KMeans
 
 Sidhesh Desai: Worked on Gaussian Naive Bayes, Research, Data Scraping, CNN
 
-Pranal Madria: Worked on PCA, Recordings, CNN, and Writeup
+Pranal Madria: Worked on PCA, Recordings, CNN, Topic Research, and Writeup
 
 Ayush Nene: Worked on Data Scraping, Random Forest, KMeans, GMM, Writeup, Colab.
 
