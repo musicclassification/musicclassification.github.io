@@ -225,29 +225,38 @@ Index(['chroma_stft_mean', 'chroma_stft_var', 'rms_mean', 'rms_var',
 
  Neural Networks: For the third and final approach of our supervised learning approaches, we used  neural networks (NN). For our NN model, our parameters were as follows: 
 ```
-def  keras_model(optimizer='rmsprop', init='glorot_uniform'):
-	model = k.models.Sequential([
-	k.layers.Dense(1024, activation='relu', kernel_initializer=init, input_shape=(features.shape[1],)),
-	k.layers.Dropout(0.4),
-	k.layers.BatchNormalization(),
-	k.layers.Dense(512, activation='relu', kernel_initializer=init),
-	k.layers.Dropout(0.4),
-	k.layers.BatchNormalization(),
-	k.layers.Dense(256, activation='relu', kernel_initializer=init),
-	k.layers.Dropout(0.4),
-	k.layers.BatchNormalization(),
-	k.layers.Dense(128, kernel_initializer=init, activation='relu'),
-	k.layers.Dropout(0.4),
-	k.layers.BatchNormalization(),
-	k.layers.Dense(64, kernel_initializer=init, activation='relu'),
-	k.layers.Dropout(0.4),
-	k.layers.BatchNormalization(),
-	k.layers.Dense(10, activation='softmax'),
-	])
-	model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
-return model
+def nn():
+  model = k.models.Sequential([
+
+    k.layers.Dense(1024, activation='elu', input_shape=(features.shape[1],)),
+    k.layers.Dropout(0.5),
+    k.layers.BatchNormalization(), 
+
+    k.layers.Dense(256, activation='tanh'),
+    k.layers.Dropout(0.5),
+    k.layers.BatchNormalization(),
+
+    k.layers.Dense(64, activation='relu'),
+    k.layers.Dropout(0.5),
+    k.layers.BatchNormalization(),
+
+    k.layers.Dense(10, activation='softmax')
+  ])
+  model.compile(loss='categorical_crossentropy', metrics=['accuracy'])
+  return model
+
+sss = StratifiedShuffleSplit(n_splits=1, test_size=0.2)
+labels = df['label']
+train_index, test_index = next(sss.split(features, labels))
+model =  KerasClassifier(build_fn=nn, verbose=0, epochs=50, batch_size=128)
+X_train, X_test, y_train, y_test = features.iloc[train_index], features.iloc[test_index], labels[train_index], labels[test_index]
+
+fit = model.fit(X_train, y_train)
+res = model.predict(X_test)
+
+print('Neural network accuracy is ', metrics.accuracy_score(y_test, res))
 ```
-We used a stratified shuffle split and averaged the accuracies and received and average accuracy of .739. This is pretty good for a difficult multiclassification problem. 
+We used a stratified shuffle split and averaged the accuracies and received and average accuracy of .725. This is pretty good for a difficult multiclassification problem. 
 
 #### Custom Genres
 Below are the results for using custom genres on some of our supervised learning approaches.
