@@ -239,7 +239,7 @@ model = k.models.Sequential([
 	k.layers.Dense(10, activation='softmax')
 ])
 ```
-We used a stratified shuffle split and averaged the accuracies and received and average accuracy of .725. This is pretty good for a difficult multiclassification problem. 
+We achieve a test accuracy of .725. This is pretty good for a difficult multiclassification problem. 
 
 #### Custom Genres
 Below are the results for using custom genres on some of our supervised learning approaches.
