@@ -50,7 +50,7 @@ The original dataset had 58 features and thus we decided to transform our datase
 ![PCA Feature 2](/assets/3.jpg "PCA Feature 2")
 
 
-As we can see, it appears that the first principal component consists of 3 of the original features, while the second principal component consists of 4 of the original features. We will partition the array to figure out which ones these are.
+As we can see, it appears that the first principal component mainly consists of 3 of the original features, while the second principal component mainly consists of 4 of the original features. We will partition the array to figure out which ones these are.
 
 We can see that running PCA on our dataset provides a greatly simplified feature set that is still able to capture the vast majority of variance present in the dataset. With just num_features=2, we are able to capture > 0.99 of the variance in the original dataset, prompting us to utilize this as our threshold value for our features post-PCA.
 
