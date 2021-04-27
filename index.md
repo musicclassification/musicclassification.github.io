@@ -254,7 +254,7 @@ categories = [
 ['rock', 'disco', 'reggae']
 ]
 ```
-We tried using our supervised learning approaches on new, custom genres. We tried fitting both Gaussisan Naive Bayes and Random Forest. We used a .75 train to .25 test ratio.
+We tried using our supervised learning approaches on new, custom genres. We tried fitting both Gaussisan Naive Bayes and Random Forest. We used a .80 train to .20 test ratio across all of our models to keep it consistent.
 
 For our GNB classifier using the new labels mentioned above our accuracy was .680. We did not see an improvement in terms of the accuracy achieved by a Gaussian Naive Bayes classifier by replacing the old labels with the new genres.
 
