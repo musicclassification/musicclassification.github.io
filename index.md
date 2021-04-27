@@ -191,7 +191,7 @@ Our first of three supervised learning approaches was Gaussian Naive Bayes. The 
 ![GNB Untransformed Features](/assets/4.jpg "GNB Untransformed Features")
 
 We then tried post transformed features and the results are as follows.
-![GNB Transformed Features](/assets/5.jpg "GNB Transformed Features"){:height=".5" width=".5"}
+![GNB Transformed Features](/assets/5.jpg "GNB Transformed Features")
 
 As we can see for the above graphs, on our untransformed dataset we get on average just over 50% accuracy. This is quite a decent amount as we are picking out of a large number of genres and music within genres can be quite different as seen by our earlier analysis.
 
