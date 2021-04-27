@@ -1,11 +1,12 @@
 
+## CS 7641 - Acoustify, Group 3 Spring 2021
 ### [Link to proposal video](https://drive.google.com/file/d/1kwqb7UsB2iS4vsniqZ7w89nSrMh75e7L/view?usp=sharing)
 
 
 #### https://musicclassification.github.io/
 #### 
 
-#### Members
+#### Members(Group 3 on Canvas)
 
 
 Sidhesh Desai, Pranay Agrawal, Ayush Nene, Manoj Niverthi, Pranal Madria
